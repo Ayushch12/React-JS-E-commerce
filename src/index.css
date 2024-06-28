@@ -32,3 +32,8 @@ nav .active li {
   display: none;
 }
 /* ============= NavLink active End here ================ */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

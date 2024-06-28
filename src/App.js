@@ -1,11 +1,17 @@
+// src/App.js
+
+import React from "react";
 import {
   createBrowserRouter,
-  RouterProvider,
-  Outlet,
   createRoutesFromElements,
+  Outlet,
   Route,
+  RouterProvider,
   ScrollRestoration,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"; // Import ErrorBoundary
 import Footer from "./components/home/Footer/Footer";
 import FooterBottom from "./components/home/Footer/FooterBottom";
 import Header from "./components/home/Header/Header";
@@ -22,8 +28,6 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Layout = () => {
   return (
@@ -50,24 +54,21 @@ const Layout = () => {
     </div>
   );
 };
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
-      <Route path="/" element={<Layout />}>
-        {/* ==================== Header Navlink Start here =================== */}
-        <Route index element={<Home />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/journal" element={<Journal />}></Route>
-        {/* ==================== Header Navlink End here ===================== */}
-        <Route path="/category/:category" element={<Offer />}></Route>
-        <Route path="/product/:_id" element={<ProductDetails />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/paymentgateway" element={<Payment />}></Route>
-      </Route>
-      <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/signin" element={<SignIn />}></Route>
+    <Route path="/" element={<Layout />} errorElement={<ErrorBoundary />}>
+      <Route index element={<Home />} />
+      <Route path="/shop" element={<Shop />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/journal" element={<Journal />} />
+      <Route path="/category/:category" element={<Offer />} />
+      <Route path="/product/:_id" element={<ProductDetails />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/paymentgateway" element={<Payment />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
     </Route>
   )
 );
